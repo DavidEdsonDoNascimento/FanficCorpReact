@@ -1,3 +1,4 @@
+import { Comment } from "../Comment";
 import styles from "./styles.module.css";
 
 export const Post = (props) => {
@@ -11,8 +12,8 @@ export const Post = (props) => {
             alt=""
           />
           <div className={styles.authorInfo}>
-            <strong>David Edson</strong>
-            <span>Web Developer</span>
+            <strong>Ameenda Silva</strong>
+            <span>Consultora de negócios</span>
           </div>
         </div>
         <time title="11 de março às 08:49h" dateTime="2024-03-11 08:49:33">
@@ -40,6 +41,11 @@ export const Post = (props) => {
           <button type="submit">Publicar</button>
         </footer>
       </form>
+      <div className={styles.commentList}>
+        <Comment />
+        <Comment />
+        <Comment />
+      </div>
     </article>
   );
 };
