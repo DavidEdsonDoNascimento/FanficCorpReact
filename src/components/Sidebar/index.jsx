@@ -1,5 +1,7 @@
 import styles from "./styles.module.css";
 import { PencilLine } from "phosphor-react";
+import { Avatar } from "../Avatar";
+
 export const Sidebar = () => {
   return (
     <aside className={styles.sidebar}>
@@ -9,7 +11,7 @@ export const Sidebar = () => {
       />
 
       <div className={styles.profile}>
-        <img className={styles.avatar} src="/imagem-gerada-no-gpt.jpeg" />
+        <Avatar src="/imagem-gerada-no-gpt.jpeg" />
 
         <strong>Ameenda Silva</strong>
         <span>Consultora de negócios</span>

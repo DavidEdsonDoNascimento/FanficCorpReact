@@ -1,16 +1,13 @@
 import { Comment } from "../Comment";
 import styles from "./styles.module.css";
+import { Avatar } from "../Avatar";
 
 export const Post = (props) => {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img
-            className={styles.avatar}
-            src="/imagem-gerada-no-gpt.jpeg"
-            alt=""
-          />
+          <Avatar src="https://github.com/diego3g.png" />
           <div className={styles.authorInfo}>
             <strong>Ameenda Silva</strong>
             <span>Consultora de negócios</span>
