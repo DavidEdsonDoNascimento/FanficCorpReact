@@ -8,3 +8,12 @@
   gap: 2rem;
   align-items: flex-start;
 }
+
+@media (max-width: 768px) {
+  html {
+    font-size: 87.5%; /* regra de 3 pra ser 14px ja que o 100% é 16px pra 1rem */
+  }
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+}

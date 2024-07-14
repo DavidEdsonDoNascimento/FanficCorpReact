@@ -1,33 +1,43 @@
+/* eslint-disable react/prop-types */
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 import { Comment } from '../Comment';
 import styles from './styles.module.css';
 import { Avatar } from '../Avatar';
 
-// eslint-disable-next-line react/prop-types
-export const Post = ({ author, content, photo }) => {
+export const Post = ({ author, content, publishedAt }) => {
+	const publishedDateFormatted = format(
+		new Date(publishedAt),
+		"d 'de' LLLL 'às' HH:mm'h'",
+		{
+			locale: ptBR,
+		}
+	);
+
 	return (
 		<article className={styles.post}>
 			<header>
 				<div className={styles.author}>
-					<Avatar src={photo} />
+					<Avatar src={author.photo} />
 					<div className={styles.authorInfo}>
-						<strong>{author}</strong>
-						<span>Consultora de negócios</span>
+						<strong>{author.name}</strong>
+						<span>{author.role}</span>
 					</div>
 				</div>
-				<time title='11 de março às 08:49h' dateTime='2024-03-11 08:49:33'>
-					Publicado há 1h
+				<time title={publishedDateFormatted} dateTime={publishedAt}>
+					{publishedDateFormatted.toString().replace(',', ' as ')}
 				</time>
 			</header>
 			<div className={styles.content}>
-				<p>Fala galeraa 👋</p>
-				<p>{content}</p>
-				<p>
-					👉 <a href=''>jane.design/doctorcare</a>
-				</p>
-				<p>
-					<a href=''>#novoprojeto</a> <a href=''>#nlw</a>{' '}
-					<a href=''>#rocketseat</a>{' '}
-				</p>
+				{content.map((item) => (
+					<p key={item.id}>
+						{item.type === 'link' ? (
+							<a href='#'>👉 {item.content}</a>
+						) : (
+							item.content
+						)}
+					</p>
+				))}
 			</div>
 			<form className={styles.commentForm}>
 				<strong>Deixe seu feedback</strong>
