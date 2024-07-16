@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Comment } from '../Comment';
@@ -8,6 +7,8 @@ import { v4 as uuid } from 'uuid';
 import { useState } from 'react';
 
 export const Post = ({ author, content, publishedAt }) => {
+	const [newCommentText, setNewCommentText] = useState('');
+
 	const [comments, setComments] = useState([
 		{
 			id: uuid(),
@@ -33,22 +34,26 @@ export const Post = ({ author, content, publishedAt }) => {
 		addSuffix: true,
 	});
 
+	const handleNewCommentChange = () => {
+		setNewCommentText(event.target.value);
+	};
+
 	const handleCreateNewComment = () => {
 		event.preventDefault();
-		const newComment = event.target.comment.value;
 
 		setComments([
 			...comments,
 			{
 				id: uuid(),
 				author: {
-					name: 'teste',
-					photo: '/photo-profile-4.svg',
+					name: 'Outro Usuário',
+					photo: '/photo-profile-2.svg',
 				},
-				content: newComment,
+				content: newCommentText,
 				publishedAt: new Date(),
 			},
 		]);
+		setNewCommentText('');
 	};
 
 	return (
@@ -81,7 +86,11 @@ export const Post = ({ author, content, publishedAt }) => {
 			</div>
 			<form onSubmit={handleCreateNewComment} className={styles.commentForm}>
 				<strong>Deixe seu feedback</strong>
-				<textarea placeholder='Deixe um comentário' name='comment' />
+				<textarea
+					placeholder='Deixe um comentário'
+					value={newCommentText}
+					onChange={handleNewCommentChange}
+				/>
 				<footer>
 					<button type='submit'>Publicar</button>
 				</footer>
