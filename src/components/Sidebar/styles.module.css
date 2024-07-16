@@ -1,5 +1,5 @@
 .sidebar {
-  background: var(--gray-800);
+  background: var(--neutral-800);
   overflow: hidden;
   border-radius: 8px;
 }
@@ -23,27 +23,27 @@
 /* Nome */
 .profile strong {
   margin-top: 1rem;
-  color: var(--gray-100);
+  color: var(--neutral-100);
   line-height: 1.6;
 }
 
 /* Cargo */
 .profile span {
   font-size: 0.875rem;
-  color: var(--gray-400);
+  color: var(--neutral-400);
   line-height: 1.6;
 }
 
 .sidebar footer {
-  border-top: 1px solid var(--gray-600);
+  border-top: 1px solid var(--neutral-600);
   margin-top: 1.5rem;
   padding: 1.5rem 2rem 2rem;
 }
 
 .sidebar footer a {
   background: transparent;
-  color: var(--blue-500);
-  border: 1px solid var(--blue-500);
+  color: var(--primary-500);
+  border: 1px solid var(--primary-500);
   border-radius: 8px;
   height: 50px;
   padding: 0 1.5rem;
@@ -60,6 +60,6 @@
 }
 
 .sidebar footer a:hover {
-  background: var(--blue-500);
+  background: var(--primary-500);
   color: var(--white);
 }

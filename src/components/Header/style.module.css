@@ -1,5 +1,5 @@
 .header {
-  background-color: var(--gray-800);
+  background-color: var(--neutral-800);
   height: 80px;
   display: flex;
   justify-content: center;
@@ -7,7 +7,7 @@
 }
 
 .header img {
-  background-color: var(--blue-500);
+  background-color: var(--primary-500);
   height: 3rem;
   width: 3rem;
   margin: 0.8rem;

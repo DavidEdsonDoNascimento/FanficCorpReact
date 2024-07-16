@@ -4,8 +4,8 @@
   ); /* 3 rem que seria 16px * 3 + os 12px das bordas e outline*/
   height: calc(3rem + 12px);
   border-radius: 8px;
-  border: 4px solid var(--gray-800);
-  outline: 2px solid var(--blue-500);
+  border: 4px solid var(--neutral-800);
+  outline: 2px solid var(--primary-500);
 }
 
 .avatar {

@@ -1,24 +1,25 @@
 :root {
-  --white: #fff;
+  --base-white: #fff;
+  --base-black: #000;
   
-  --gray-100: #e1e1e6;
-  --gray-300: #c4c4cc;
-  --gray-400: #8d8d99;
-  --gray-600: #323238;
-  --gray-700: #29292e;
-  --gray-800: #202024;
-  --gray-900: #121214;
+  --neutral-100: #e1e1e6;
+  --neutral-300: #c4c4cc;
+  --neutral-400: #8d8d99;
+  --neutral-600: #323238;
+  --neutral-700: #29292e;
+  --neutral-800: #202024;
+  --neutral-900: #121214;
 
-  --blue-300: #0e76a8;
-  --blue-500: #007dbb;
-  --blue-900: #1d7199;
+  --primary-300: #0e76a8;
+  --primary-500: #007dbb;
+  --primary-900: #1d7199;
 
-  --red-500: #F75A68;
+  --error-500: #F75A68;
 }
 
 :focus {
   outline: transparent;
-  box-shadow: 0 0 0 2px var(--blue-500);
+  box-shadow: 0 0 0 2px var(--primary-500);
 }
 
 * {
@@ -28,8 +29,8 @@
 }
 
 body {
-  background: var(--gray-900);
-  color: var(--gray-300);
+  background: var(--neutral-900);
+  color: var(--neutral-300);
   -webkit-font-smoothing: antialiased;
 }
 
