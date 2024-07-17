@@ -1,10 +1,11 @@
 import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Comment } from '../Comment';
-import styles from './styles.module.css';
 import { Avatar } from '../Avatar';
 import { v4 as uuid } from 'uuid';
 import { useState } from 'react';
+
+import styles from './styles.module.css';
 
 export const Post = ({ author, content, publishedAt }) => {
 	const [newCommentText, setNewCommentText] = useState('');
@@ -36,6 +37,14 @@ export const Post = ({ author, content, publishedAt }) => {
 
 	const handleNewCommentChange = () => {
 		setNewCommentText(event.target.value);
+	};
+
+	const deleteComment = (commentId) => {
+		console.log(`Deleting comment: ${commentId}`);
+		const commentsAfterDeletingTheChosenOne = comments.filter(
+			(comment) => comment.id !== commentId
+		);
+		setComments(commentsAfterDeletingTheChosenOne);
 	};
 
 	const handleCreateNewComment = () => {
@@ -99,9 +108,11 @@ export const Post = ({ author, content, publishedAt }) => {
 				{comments.map((item) => (
 					<Comment
 						key={item.id}
+						id={item.id}
 						author={item.author}
 						content={item.content}
 						publishedAt={item.publishedAt}
+						onDeleteComment={deleteComment}
 					/>
 				))}
 			</div>

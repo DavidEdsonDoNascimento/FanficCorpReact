@@ -1,11 +1,22 @@
+/* eslint-disable react/prop-types */
 import { ThumbsUp, Trash } from 'phosphor-react';
 import styles from './styles.module.css';
 import { Avatar } from '../Avatar';
 
-export const Comment = ({ author, content, publishedAt }) => {
+export const Comment = ({
+	id,
+	author,
+	content,
+	publishedAt,
+	onDeleteComment,
+}) => {
+	const handleDeleteComment = () => {
+		onDeleteComment(id);
+	};
+
 	return (
 		<div className={styles.comment}>
-			<Avatar src={author.photo} hasBorder={false} />
+			<Avatar src={author?.photo?.toString() || ''} hasBorder={false} />
 			<div className={styles.commentBox}>
 				<div className={styles.commentContent}>
 					<header>
@@ -15,7 +26,7 @@ export const Comment = ({ author, content, publishedAt }) => {
 								Cerca de 1h atrás
 							</time>
 						</div>
-						<button title='Deletar Comentário'>
+						<button title='Deletar Comentário' onClick={handleDeleteComment}>
 							<Trash size={24} />
 						</button>
 					</header>
