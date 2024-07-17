@@ -9,7 +9,7 @@ export const Sidebar = () => {
 			<img className={styles.cover} src='/background-profile.svg' />
 
 			<div className={styles.profile}>
-				<Avatar src='/photo-profile-3.svg' />
+				<Avatar src='/photo-profile-3.svg' title='Ameenda Silva' />
 
 				<strong>Ameenda Silva</strong>
 				<span>Consultora de negócios</span>

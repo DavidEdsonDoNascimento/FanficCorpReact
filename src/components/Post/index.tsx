@@ -75,7 +75,7 @@ export const Post = ({ author, content, publishedAt }: IPost) => {
 		<article className={styles.post}>
 			<header>
 				<div className={styles.author}>
-					<Avatar src={author.photo} />
+					<Avatar src={author.photo} title={author.name} />
 					<div className={styles.authorInfo}>
 						<strong>{author.name}</strong>
 						<span>{author.role}</span>

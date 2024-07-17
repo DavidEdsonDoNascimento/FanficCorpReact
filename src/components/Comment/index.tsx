@@ -32,7 +32,11 @@ export const Comment = ({
 
 	return (
 		<div className={styles.comment}>
-			<Avatar src={author?.photo?.toString() || ''} hasBorder={false} />
+			<Avatar
+				src={author?.photo?.toString() || ''}
+				title={author?.name}
+				hasBorder={false}
+			/>
 			<div className={styles.commentBox}>
 				<div className={styles.commentContent}>
 					<header>
