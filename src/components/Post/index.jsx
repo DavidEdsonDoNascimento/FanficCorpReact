@@ -8,8 +8,9 @@ import { useState } from 'react';
 import styles from './styles.module.css';
 
 export const Post = ({ author, content, publishedAt }) => {
+	// use states
 	const [newCommentText, setNewCommentText] = useState('');
-
+	console.log(`newCommentText: `, newCommentText);
 	const [comments, setComments] = useState([
 		{
 			id: uuid(),
@@ -22,6 +23,7 @@ export const Post = ({ author, content, publishedAt }) => {
 		},
 	]);
 
+	// functions
 	const publishedDateFormatted = format(
 		new Date(publishedAt),
 		"d 'de' LLLL 'às' HH:mm'h'",
@@ -35,7 +37,11 @@ export const Post = ({ author, content, publishedAt }) => {
 		addSuffix: true,
 	});
 
+	const handleNewCommentInvalid = () => {
+		event.target.setCustomValidity('Campo obrigatório');
+	};
 	const handleNewCommentChange = () => {
+		event.target.setCustomValidity('');
 		setNewCommentText(event.target.value);
 	};
 
@@ -65,6 +71,9 @@ export const Post = ({ author, content, publishedAt }) => {
 		setNewCommentText('');
 	};
 
+	// HTML comparative variables
+	const isNewCommentEmpty = !newCommentText;
+
 	return (
 		<article className={styles.post}>
 			<header>
@@ -82,6 +91,7 @@ export const Post = ({ author, content, publishedAt }) => {
 					{publishedDateRelativeToNow}
 				</time>
 			</header>
+			{/* Post Content */}
 			<div className={styles.content}>
 				{content.map((item) => (
 					<p key={uuid()}>
@@ -93,17 +103,24 @@ export const Post = ({ author, content, publishedAt }) => {
 					</p>
 				))}
 			</div>
+			{/* Form Comment */}
 			<form onSubmit={handleCreateNewComment} className={styles.commentForm}>
 				<strong>Deixe seu feedback</strong>
 				<textarea
 					placeholder='Deixe um comentário'
 					value={newCommentText}
 					onChange={handleNewCommentChange}
+					onInvalid={handleNewCommentInvalid}
+					required
 				/>
+				{/* Button Publish */}
 				<footer>
-					<button type='submit'>Publicar</button>
+					<button type='submit' disabled={isNewCommentEmpty}>
+						Publicar
+					</button>
 				</footer>
 			</form>
+			{/* Comment List */}
 			<div className={styles.commentList}>
 				{comments.map((item) => (
 					<Comment
