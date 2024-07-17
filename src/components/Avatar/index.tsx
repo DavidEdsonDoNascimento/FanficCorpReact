@@ -1,7 +1,7 @@
 import styles from './styles.module.css';
+import { ImgHTMLAttributes } from 'react';
 
-interface IAuthorProps {
-	src: string;
+interface IAuthorProps extends ImgHTMLAttributes<HTMLImageElement> {
 	hasBorder?: boolean;
 }
 
