@@ -1,12 +1,11 @@
-import { Post, Header, Sidebar } from './components';
-import styles from './App.module.css';
-import './global.css';
+import { IPost } from './../interfaces/posts';
 
-export const App = () => {
-	const posts = [
+export const getPostsMock = (): IPost[] => {
+	return [
 		{
-			id: 1,
+			id: '1',
 			author: {
+				id: '1',
 				name: 'Ameenda Silva',
 				photo: '/photo-profile-1.svg',
 				role: 'Diretora de marketing',
@@ -23,8 +22,9 @@ export const App = () => {
 			publishedAt: new Date('2024-03-11 08:49:33'),
 		},
 		{
-			id: 2,
+			id: '2',
 			author: {
+				id: '2',
 				name: 'Bieenca Abravanel',
 				photo: '/photo-profile-2.svg',
 				role: 'Gestor de projetos',
@@ -41,23 +41,4 @@ export const App = () => {
 			publishedAt: new Date('2024-03-15 08:49:33'),
 		},
 	];
-
-	return (
-		<div>
-			<Header />
-			<div className={styles.wrapper}>
-				<Sidebar />
-				<main>
-					{posts.map((item) => (
-						<Post
-							key={item.id}
-							author={item.author}
-							content={item.content}
-							publishedAt={item.publishedAt}
-						/>
-					))}
-				</main>
-			</div>
-		</div>
-	);
 };

@@ -1,51 +1,46 @@
-import { format, formatDistanceToNow } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
+import { IComment, IPost } from '../../interfaces';
 import { Comment } from '../Comment';
 import { Avatar } from '../Avatar';
 import { v4 as uuid } from 'uuid';
-import { useState } from 'react';
+import {
+	getPublishedDateFormatted,
+	getPublishedDateRelativeToNow,
+} from '../../utils/date-format';
 
 import styles from './styles.module.css';
 
-export const Post = ({ author, content, publishedAt }) => {
-	// use states
-	const [newCommentText, setNewCommentText] = useState('');
-	console.log(`newCommentText: `, newCommentText);
-	const [comments, setComments] = useState([
+export const Post = ({ author, content, publishedAt }: IPost) => {
+	const [newCommentText, setNewCommentText] = useState<string>('');
+	const [comments, setComments] = useState<Array<IComment>>([
 		{
 			id: uuid(),
 			author: {
+				id: uuid(),
 				name: 'Outro Usuário',
 				photo: '/photo-profile-2.svg',
+				role: 'Gestor de projetos',
 			},
 			content: 'Comentário de teste',
 			publishedAt: new Date(),
 		},
 	]);
 
-	// functions
-	const publishedDateFormatted = format(
-		new Date(publishedAt),
-		"d 'de' LLLL 'às' HH:mm'h'",
-		{
-			locale: ptBR,
-		}
-	);
+	const publishedDateFormatted: string = getPublishedDateFormatted(publishedAt);
+	const publishedDateRelativeToNow: string =
+		getPublishedDateRelativeToNow(publishedAt);
 
-	const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
-		locale: ptBR,
-		addSuffix: true,
-	});
-
-	const handleNewCommentInvalid = () => {
+	const handleNewCommentInvalid = (
+		event: InvalidEvent<HTMLTextAreaElement>
+	) => {
 		event.target.setCustomValidity('Campo obrigatório');
 	};
-	const handleNewCommentChange = () => {
+	const handleNewCommentChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
 		event.target.setCustomValidity('');
 		setNewCommentText(event.target.value);
 	};
 
-	const deleteComment = (commentId) => {
+	const deleteComment = (commentId: string) => {
 		console.log(`Deleting comment: ${commentId}`);
 		const commentsAfterDeletingTheChosenOne = comments.filter(
 			(comment) => comment.id !== commentId
@@ -53,7 +48,7 @@ export const Post = ({ author, content, publishedAt }) => {
 		setComments(commentsAfterDeletingTheChosenOne);
 	};
 
-	const handleCreateNewComment = () => {
+	const handleCreateNewComment = (event: FormEvent) => {
 		event.preventDefault();
 
 		setComments([
@@ -61,18 +56,20 @@ export const Post = ({ author, content, publishedAt }) => {
 			{
 				id: uuid(),
 				author: {
+					id: uuid(),
 					name: 'Outro Usuário',
 					photo: '/photo-profile-2.svg',
+					role: 'Gestor de projetos',
 				},
 				content: newCommentText,
 				publishedAt: new Date(),
 			},
 		]);
+
 		setNewCommentText('');
 	};
 
-	// HTML comparative variables
-	const isNewCommentEmpty = !newCommentText;
+	const isNewCommentEmpty: boolean = !newCommentText;
 
 	return (
 		<article className={styles.post}>
